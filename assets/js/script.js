@@ -8,9 +8,9 @@ var showingFilms = "movie/now_playing"
 var popPeople = "person/popular/"
 var multiSearch = "/search/multi?query="
 
-// movieGlu API Information
-var gluKey = "api-key=Dm6PtlSwNc4Vjt4WhaSTS1dXGqu9Vu48gz9TqwN0";
-var gluUrl = "https://api-gate2.movieglu.com/";
+// bing API Information
+var bingKey = "Ai1mA8cMmJaHgOtb3KtZ66UcmJ_pr5LQjw50dKUeeDlDI4q0nE0rJKrrAdMzBAYh";
+
 
 // Global Variables/DOM elements
 var trendContentCont = $("#trending-content-cont");
@@ -37,15 +37,24 @@ function error(err)
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 // GEOLOCATION ------ END
-
+fetch(
+    'https://dev.virtualearth.net/REST/v1/LocalSearch/?query=theaters&userLocation=&key=Ai1mA8cMmJaHgOtb3KtZ66UcmJ_pr5LQjw50dKUeeDlDI4q0nE0rJKrrAdMzBAYh'
+  )
+    // Convert the response to JSON
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+        console.log(response)
+    });
 // var theatersNearMe = function() {
 //     locationTheaters = JSON.parse(localStorage.getItem("locationTheaters"));
 
 //     if (!locationTheaters) {
 //         fetch (
-//             gluKey + "cinemasNearby/?n=5" + gluUrl
+//             'https://dev.virtualearth.net/REST/v1/LocalSearch/?query=theaters&userLocation=&key=Ai1mA8cMmJaHgOtb3KtZ66UcmJ_pr5LQjw50dKUeeDlDI4q0nE0rJKrrAdMzBAYh'
 //         )
-//         .then (function(response){
+//         .then (function(response) {
 //             if(response.ok) {
 //                 return response.json();
 //             }
